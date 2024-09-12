@@ -1,0 +1,26 @@
+.row-item-container {
+  box-sizing: border-box;
+  height: 54px;
+}
+.table-cell-header {
+  padding-right: 8px;
+  padding-left: 8.5px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+}
+.table-column-header-text-style {
+  padding: 0;
+  margin: 0;
+  font: 500 16px Poppins, sans-serif;
+  color: rgba(0, 0, 0, 0.5);
+  white-space: pre-wrap;
+}
+.bordered-cell {
+  padding-right: 8px;
+  padding-left: 8px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+}
+.action-cell {
+  padding-right: 8.5px;
+  padding-left: 8px;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.5);
+}
