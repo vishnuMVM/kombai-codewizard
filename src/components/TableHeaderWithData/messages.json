@@ -1,6 +1,8 @@
 {
-  "name": "Name ",
-  "description": "Description",
-  "type": "Type",
-  "actions": "Actions"
+  "mid" : "Mid",
+  "FullName":"FullName",
+  "contactNumber":"ContactNumber",
+  "Address":"Address",
+   "actions": "Actions"
+
 }

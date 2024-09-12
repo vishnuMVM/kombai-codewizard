@@ -1,7 +1,21 @@
 import ProductTableRowRenderer from "../ProductTableRowRenderer";
 import { theme } from "../../theme";
+import { GetManagersMulti } from  '../../services/service'; 
+import { useState,useEffect } from "react";
 
 function ProductTableRenderer({ productTableRowsData }) {
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    GetManagersMulti().then((response) => {
+      if (response.status) {
+        setData(response.values); 
+      }
+    });
+    
+  }, []);
+
   const productTableRowsStylesConfigurations = [
     {
       borderStyleBottomA698Fb6A: theme.others.BORDER_BOTTOM_A698FB6A,
@@ -56,9 +70,19 @@ function ProductTableRenderer({ productTableRowsData }) {
   ];
   return (
     <tbody>
-      {productTableRowsData.map((data, index) => {
+      {/* {productTableRowsData.map((data, index) => {
         return <ProductTableRowRenderer {...data} key={index} {...productTableRowsStylesConfigurations[index]} />;
+      })} */}
+      {data.map((data, index) =>{
+              return (
+                <ProductTableRowRenderer {...data} key={index} {...productTableRowsStylesConfigurations[index]} 
+                sanitizedHtmlContent3={productTableRowsData[index].sanitizedHtmlContent3}
+                sanitizedHtmlContent1={productTableRowsData[index].sanitizedHtmlContent1}
+                sanitizedHtmlContent5={productTableRowsData[index].sanitizedHtmlContent5 }
+                />
+                )
       })}
+
     </tbody>
   );
 }

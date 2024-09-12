@@ -5,17 +5,17 @@ function TableHeaderWithData() {
   return (
     <thead>
       <tr className="row-item-container">
-        <td className="table-cell-header">
-          <p className="table-column-header-text-style">Id</p>
+        <td className="bordered-cell">
+          <p className="table-column-header-text-style">{messages["mid"]}</p>
         </td>
         <td className="bordered-cell">
-          <p className="table-column-header-text-style">{messages["name"]}</p>
+          <p className="table-column-header-text-style">{messages["FullName"]}</p>
         </td>
         <td className="bordered-cell">
-          <p className="table-column-header-text-style">{messages["description"]}</p>
+          <p className="table-column-header-text-style">{messages["contactNumber"]}</p>
         </td>
         <td className="bordered-cell">
-          <p className="table-column-header-text-style">{messages["type"]}</p>
+          <p className="table-column-header-text-style">{messages["Address"]}</p>
         </td>
         <td className="action-cell">
           <p className="table-column-header-text-style">{messages["actions"]}</p>
