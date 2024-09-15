@@ -1,6 +1,6 @@
 import ProductTableRowRenderer from "../ProductTableRowRenderer";
 import { theme } from "../../theme";
-import { GetManagersMulti } from  '../../services/service'; 
+import { GetManagersMulti,SetManagerSingle} from  '../../services/service'; 
 import { useState,useEffect } from "react";
 
 function ProductTableRenderer({ productTableRowsData }) {
@@ -14,7 +14,24 @@ function ProductTableRenderer({ productTableRowsData }) {
       }
     });
     
-  }, []);
+  }, [data]);
+
+  const handleDelete = async (MId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this entry?");
+    if (confirmDelete) {
+      try {
+        const result = await SetManagerSingle({ MId, Deleted: true });
+        if (result.status) {
+          alert('Record deleted successfully');
+        } else {
+          alert(`Failed to delete: ${result.statusText}`);
+        }
+      } catch (error) {
+        console.error('Delete failed:', error);
+      }
+    }
+  };
+
 
   const productTableRowsStylesConfigurations = [
     {
@@ -79,6 +96,7 @@ function ProductTableRenderer({ productTableRowsData }) {
                 sanitizedHtmlContent3={productTableRowsData[index].sanitizedHtmlContent3}
                 sanitizedHtmlContent1={productTableRowsData[index].sanitizedHtmlContent1}
                 sanitizedHtmlContent5={productTableRowsData[index].sanitizedHtmlContent5 }
+                handleDelete={handleDelete}
                 />
                 )
       })}

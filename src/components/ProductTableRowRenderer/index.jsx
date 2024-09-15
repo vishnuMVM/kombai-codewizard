@@ -21,7 +21,7 @@ function ProductTableRowRenderer({
   borderBottomStyleWithColorA698Fb6A,
   dynamicBorderStyle,
   dynamicBorderStyleWithSvgIcons,
-  MId,FullName,ContactNumber,Address,
+  MId,FullName,ContactNumber,Address, handleDelete
 }) {
   return (
     <tr className="product-listing-item-view">
@@ -47,7 +47,9 @@ function ProductTableRowRenderer({
         <div className="horizontal-flex-container">
           <SvgIcon2 className="svg-container1" sanitizedHtmlContent3={sanitizedHtmlContent3} />
           <SvgIcon1 className="svg-container2" sanitizedHtmlContent1={sanitizedHtmlContent1} />
+          <button style={{border:'none'}}onClick={() => handleDelete(MId)}>
           <SvgIcon3 className="svg-container2" sanitizedHtmlContent5={sanitizedHtmlContent5} />
+          </button>
         </div>
       </td>
     </tr>
