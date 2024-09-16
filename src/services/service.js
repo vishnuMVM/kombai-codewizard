@@ -1,4 +1,4 @@
-const serverApi="http://apprunner.code-wizard.in:8200/petcarebefortesting/"
+const serverApi="http://apprunner.code-wizard.in:8210/petcarebefortesting/"
 
 const GetManagersMulti = async (query, expands) => {
     return new Promise(async (resolve) => {

@@ -3,18 +3,22 @@ import { theme } from "../../theme";
 import { GetManagersMulti,SetManagerSingle} from  '../../services/service'; 
 import { useState,useEffect } from "react";
 
-function ProductTableRenderer({ productTableRowsData }) {
+function ProductTableRenderer({ productTableRowsData, sortBy}) {
 
   const [data, setData] = useState([]);
 
-  useEffect(() => {
-    GetManagersMulti().then((response) => {
+  const fetchData = () => {
+    const query = `$orderby=${sortBy.field} ${sortBy.sort}`;
+    GetManagersMulti(query).then((response) => {
       if (response.status) {
         setData(response.values); 
       }
     });
-    
-  }, [data]);
+  };
+  useEffect(() => {
+    fetchData();
+  }, [sortBy]);
+
 
   const handleDelete = async (MId) => {
     const confirmDelete = window.confirm("Are you sure you want to delete this entry?");
@@ -23,6 +27,7 @@ function ProductTableRenderer({ productTableRowsData }) {
         const result = await SetManagerSingle({ MId, Deleted: true });
         if (result.status) {
           alert('Record deleted successfully');
+          fetchData();
         } else {
           alert(`Failed to delete: ${result.statusText}`);
         }
