@@ -34,7 +34,7 @@ function ProductTableRowRenderer({
       <td className="product-info-block" style={{ borderBottom: borderBottomStyleWithColorA698Fb6A }}>
         <p className="product-description-text-style">{productDescriptionVariant || ContactNumber}</p>
       </td>
-      <td className="product-info-block" style={{ borderBottom: dynamicBorderStyle }}>
+      <td className="product-info-block" style={{ borderBottom: borderBottomStyleWithColorA698Fb6A }}>
         {/* Button Component starts here. We've generated code using MUI Base. See other options in "Component library" dropdown in Settings */}
         {/* <Button className="product-type-button-style" style={{ border: dynamicBorderStyle1, backgroundColor: dynamicBackgroundColorStyle, color: colorSchemeStyle, minWidth: dynamicWidthStyle }}>
           {productTypeButton}
@@ -43,7 +43,7 @@ function ProductTableRowRenderer({
           {productTypeButton || Address}
    
       </td>
-      <td className="product-card-details" style={{ borderBottom: dynamicBorderStyleWithSvgIcons }}>
+      <td className="product-card-details" style={{ borderBottom: borderBottomStyleWithColorA698Fb6A }}>
         <div className="horizontal-flex-container">
           <SvgIcon2 className="svg-container1" sanitizedHtmlContent3={sanitizedHtmlContent3} />
           <SvgIcon1 className="svg-container2" sanitizedHtmlContent1={sanitizedHtmlContent1} />

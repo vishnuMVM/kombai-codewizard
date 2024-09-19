@@ -1,4 +1,32 @@
-const serverApi="http://apprunner.code-wizard.in:8210/petcarebefortesting/"
+const serverApi="http://apprunner.code-wizard.in:8246/petcarebefortesting/"
+
+
+const GetManagersCount = async (query) => {
+    return new Promise(async (resolve) => {
+        let url = `${serverApi}Managers/$count`;
+        if (query) url = `${serverApi}Managers/$count?${query}`;
+
+        try {
+            const res = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-type": "application/json"
+                }
+            });
+
+            const json = await res.json();
+            if (res.status === 200) {
+                return resolve({ status: res.ok, values: json || 0 });
+            }
+
+            return resolve({ status: false, statusText: json.error.message });
+
+        } catch (error) {
+            console.log(error);
+            return resolve({ status: false, statusText: error.message });
+        }
+    })
+}
 
 const GetManagersMulti = async (query, expands) => {
     return new Promise(async (resolve) => {
@@ -72,4 +100,4 @@ const SetManagerSingle = async (input) => {     return new Promise(async (resolv
 });
 }
 
-export  {GetManagersMulti,SetManagerSingle};
+export  {GetManagersMulti,SetManagerSingle,GetManagersCount};

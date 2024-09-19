@@ -3,12 +3,20 @@ import { theme } from "../../theme";
 import { GetManagersMulti,SetManagerSingle} from  '../../services/service'; 
 import { useState,useEffect } from "react";
 
-function ProductTableRenderer({ productTableRowsData, sortBy}) {
+function ProductTableRenderer({ productTableRowsData, sortBy,pageInfo}) {
 
   const [data, setData] = useState([]);
 
   const fetchData = () => {
-    const query = `$orderby=${sortBy.field} ${sortBy.sort}`;
+    const skip = pageInfo.page * pageInfo.pageSize;
+    const top = pageInfo.pageSize;
+
+    let query = `$skip=${skip}&$top=${top}`;
+    
+    if (sortBy.field && sortBy.sort) {
+      query += `&$orderby=${sortBy.field} ${sortBy.sort}`;
+    }
+    
     GetManagersMulti(query).then((response) => {
       if (response.status) {
         setData(response.values); 
@@ -17,7 +25,7 @@ function ProductTableRenderer({ productTableRowsData, sortBy}) {
   };
   useEffect(() => {
     fetchData();
-  }, [sortBy]);
+  }, [pageInfo,sortBy]);
 
 
   const handleDelete = async (MId) => {
@@ -97,10 +105,10 @@ function ProductTableRenderer({ productTableRowsData, sortBy}) {
       })} */}
       {data.map((data, index) =>{
               return (
-                <ProductTableRowRenderer {...data} key={index} {...productTableRowsStylesConfigurations[index]} 
-                sanitizedHtmlContent3={productTableRowsData[index].sanitizedHtmlContent3}
-                sanitizedHtmlContent1={productTableRowsData[index].sanitizedHtmlContent1}
-                sanitizedHtmlContent5={productTableRowsData[index].sanitizedHtmlContent5 }
+                <ProductTableRowRenderer {...data} key={index} {...productTableRowsStylesConfigurations[1]} 
+                sanitizedHtmlContent3={productTableRowsData[1].sanitizedHtmlContent3}
+                sanitizedHtmlContent1={productTableRowsData[1].sanitizedHtmlContent1}
+                sanitizedHtmlContent5={productTableRowsData[1].sanitizedHtmlContent5 }
                 handleDelete={handleDelete}
                 />
                 )
